@@ -34,20 +34,24 @@ class Config:
 
     # Image
     image_size: int = 224
-    patch_size: int = 16
+    patch_size: int = 8  # 224 / 8 = 28 -> 28 x 28 = 784 patches
     in_channels: int = 3
 
     # Transformer
-    d_model: int = 512
-    num_heads: int = 4
-    d_ff: int = 2048
-    embed_dim: int = 256
+    d_model: int = 1024
+    num_heads: int = 8  # head_dim = 1024 / 8 = 128
+    d_ff: int = 4096  # 4 * d_model
+    embed_dim: int = 1024  # Đồng bộ với d_model
+
     num_encoder_layers: int = 4
-    num_decoder_layers = 4
+    num_decoder_layers: int = 4
+
+    # Giữ các field alias để tương thích code hiện tại
     decoder_layers: int = 4
-    encoder_heads: int = 4
-    decoder_heads: int = 4
-    mlp_dim: int = 1024
+    encoder_heads: int = 8
+    decoder_heads: int = 8
+
+    mlp_dim: int = 4096  # Đồng bộ 4 * d_model
     mlp_ratio: float = 4.0
     attention_dropout: float = 0.1
 
@@ -57,20 +61,23 @@ class Config:
     vocabulary_file: str = VOCABULARY_FILE
 
     # Training
-    batch_size: int = 8
+    batch_size: int = 16  # Patch 8 làm attention memory tăng mạnh
     epochs: int = 30
+    num_epochs: int = 30  # Đồng bộ với epochs
+
     learning_rate: float = 1e-4
     weight_decay: float = 1e-4
-    max_grad_norm = 1.0
-    num_epochs = 10
-    eps: float = 1e-6
+
+    max_grad_norm: float = 1.0
     gradient_clip_norm: float = 1.0
+    eps: float = 1e-6
+
     num_workers: int = 4
     use_amp: bool = True
-    gradient_accumulation_steps: int = 1
+    gradient_accumulation_steps: int = 2  # Effective batch size = 8
 
     # Checkpoint
     checkpoint_dir: str = "checkpoints"
-    checkpoint_path: str = "checkpoints/image_captioning_epoch_010.pt"
+    checkpoint_path: str = "checkpoints/image_captioning_patch8_d1024_epoch_010.pt"
     log_interval: int = 20
 
