@@ -16,7 +16,7 @@ DATASET_DIR = PROJECT_ROOT / "datasets"
 RAW_DATA_DIR = DATASET_DIR / "raw"
 PROCESSED_DATA_DIR = DATASET_DIR / "processed"
 
-IMAGE_DIR = RAW_DATA_DIR / "Images"
+IMAGE_DIR = Path("C:/Users/Thong/Downloads/archive (1)/Images")
 CAPTION_FILE = RAW_DATA_DIR / "captions.txt"
 OUTPUT_FILE = PROCESSED_DATA_DIR / "image_to_captions.json"
 
@@ -159,3 +159,7 @@ def prepare_dataset() -> None:
     print(f"Output file: {OUTPUT_FILE}")
 
     print(f"Đã lưu mapping tại: {OUTPUT_FILE}")
+
+
+if __name__ == "__main__":
+    prepare_dataset()

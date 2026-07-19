@@ -327,3 +327,7 @@ def split_dataset() -> None:
     print(f"Train file: {TRAIN_DATA_MAPPING}")
     print(f"Validation file: {VALIDATION_DATA_FILE}")
     print(f"Test file: {TEST_DATA_FILE}")
+
+
+if __name__ == "__main__":
+    split_dataset()

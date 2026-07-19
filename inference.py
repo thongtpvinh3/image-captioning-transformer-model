@@ -14,11 +14,12 @@ from data.vocabulary import Vocabulary
 from models._0_image_captioning_transformer import (
     ImageCaptioningTransformer
 )
+from train import create_or_load_vocabulary
 
 CHECKPOINT_PATH = Config.checkpoint_path
 
 IMAGE_PATH = (
-    "datasets/inference/1299459550_1fd5594fa2.jpg"
+    "datasets/raw/Images/41999070_838089137e.jpg"
 )
 
 
@@ -29,9 +30,7 @@ def get_device() -> torch.device:
 
 
 def load_vocabulary() -> Vocabulary:
-    tokenizer = CaptionTokenizer()
-
-    return Vocabulary.load(vocabulary_path=Config.vocabulary_file, tokenizer=tokenizer)
+    return create_or_load_vocabulary()
 
 
 def load_model(checkpoint_path: str | Path, vocabulary: Vocabulary, device: torch.device) -> ImageCaptioningTransformer:
@@ -172,7 +171,7 @@ def main() -> None:
 
     print(f"Device: {device}")
 
-    vocabulary = load_vocabulary()
+    vocabulary = create_or_load_vocabulary()
 
     model = load_model(checkpoint_path=CHECKPOINT_PATH, vocabulary=vocabulary, device=device)
 

@@ -185,7 +185,7 @@ def main() -> None:
     # --------------------------------------------------
     # Dataset và device.
     # --------------------------------------------------
-    # prepare_training_data()
+    prepare_training_data()
     device = get_device()
 
     print(f"Device: {device}")

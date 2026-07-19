@@ -78,6 +78,6 @@ class Config:
 
     # Checkpoint
     checkpoint_dir: str = "checkpoints"
-    checkpoint_path: str = "checkpoints/image_captioning_patch8_d1024_epoch_010.pt"
+    checkpoint_path: str = "checkpoints/image_captioning_epoch_030 (1).pt"
     log_interval: int = 20
 
